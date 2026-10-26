@@ -1,9 +1,10 @@
 import '@testing-library/jest-dom/vitest';
 import { cleanup } from '@testing-library/react';
-import { afterEach } from 'vitest';
+import { afterEach, vi } from 'vitest';
 
 afterEach(() => {
   cleanup();
+  vi.useRealTimers();
   window.localStorage.clear();
 });
 
@@ -21,6 +22,5 @@ if (!window.matchMedia) {
       dispatchEvent: () => false,
     }) as MediaQueryList;
 }
-if (!window.scrollTo || String(window.scrollTo).includes('not implemented')) {
-  window.scrollTo = () => undefined;
-}
+// jsdom's scrollTo only logs "not implemented".
+window.scrollTo = (() => undefined) as typeof window.scrollTo;

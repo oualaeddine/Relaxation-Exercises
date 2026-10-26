@@ -199,8 +199,8 @@ function PracticeScreen({ exercise }: { exercise: Exercise }) {
     const onKey = (event: KeyboardEvent) => {
       if (event.code !== 'Space' && event.key !== ' ') return;
       if (dialogOpen || event.repeat) return;
-      const target = event.target as HTMLElement | null;
-      if (target?.closest(INTERACTIVE)) return;
+      const target = event.target;
+      if (target instanceof Element && target.closest(INTERACTIVE)) return;
       event.preventDefault();
       act((s, at) => (s.status === 'running' ? pause(s, at) : resume(s, at)));
     };

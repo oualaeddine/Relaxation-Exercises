@@ -17,3 +17,14 @@ export function downloadText(fileName: string, content: string, mime: string): b
     return false;
   }
 }
+
+/** Reads a user-selected file as text (FileReader fallback for older browsers). */
+export function readFileText(file: Blob): Promise<string> {
+  if (typeof file.text === 'function') return file.text();
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result ?? ''));
+    reader.onerror = () => reject(reader.error ?? new Error('Lecture impossible'));
+    reader.readAsText(file);
+  });
+}

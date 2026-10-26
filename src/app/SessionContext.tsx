@@ -196,9 +196,16 @@ export function SessionProvider({ children }: { children: ReactNode }) {
   }, [persistLive]);
 
   // Leaving the practice screen pauses a running session (no timer keeps running elsewhere).
+  // Only an actual transition *away* from the practice route counts: a session started from
+  // another page (e.g. the detail page) right before navigating must not be paused.
+  const previousPath = useRef(location.pathname);
   useEffect(() => {
+    const left = previousPath.current;
+    previousPath.current = location.pathname;
     const current = sessionRef.current;
-    if (current && current.status === 'running' && location.pathname !== practicePath(current.exerciseId)) {
+    if (!current || current.status !== 'running') return;
+    const practice = practicePath(current.exerciseId);
+    if (left === practice && location.pathname !== practice) {
       commit(current, pause(current, now()));
     }
   }, [location.pathname, commit]);

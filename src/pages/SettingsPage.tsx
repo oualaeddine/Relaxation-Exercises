@@ -1,5 +1,6 @@
 import { useId, useRef, useState, type ReactNode } from 'react';
 import { useAppData } from '../app/AppData';
+import { readFileText } from '../app/download';
 import { speechAvailable } from '../app/feedback';
 import { useDocumentTitle } from '../app/hooks';
 import { ExportButtons } from '../components/ExportButtons';
@@ -57,7 +58,13 @@ export function SettingsPage() {
       setStatus({ tone: 'error', text: 'Le fichier est trop volumineux (5 Mo maximum).' });
       return;
     }
-    const text = await file.text();
+    let text: string;
+    try {
+      text = await readFileText(file);
+    } catch {
+      setStatus({ tone: 'error', text: 'Le fichier n’a pas pu être lu.' });
+      return;
+    }
     const parsed = parseBackup(text);
     if (fileRef.current) fileRef.current.value = '';
     if (!parsed.ok) {
@@ -177,6 +184,7 @@ export function SettingsPage() {
 
         <Section title="Objectif hebdomadaire" icon="trending_up" id="goal-settings">
           <form
+            noValidate
             className="flex flex-wrap items-end gap-3"
             onSubmit={(e) => {
               e.preventDefault();
