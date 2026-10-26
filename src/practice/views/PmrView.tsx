@@ -185,22 +185,22 @@ export function PmrView({ api }: { api: PracticeApi }) {
       </div>
 
       <div className="rounded-3xl bg-surface-container-lowest p-4 shadow-sm">
-        <div className="flex items-center gap-3">
-          <button type="button" aria-label="Répéter ce groupe" onClick={() => api.act(restartUnit)} className="flex min-h-[52px] items-center justify-center gap-1 rounded-full bg-surface-container px-4 text-primary hover:bg-surface-container-high">
+        <div className="grid grid-cols-[auto_1fr_1fr] items-center gap-2 xs:gap-3">
+          <button type="button" aria-label="Répéter ce groupe" onClick={() => api.act(restartUnit)} className="flex min-h-[52px] min-w-[52px] items-center justify-center gap-1 rounded-full bg-surface-container px-3 text-primary hover:bg-surface-container-high">
             <Icon name="replay" size={20} />
             <span className="hidden font-label-lg text-label-lg sm:inline">Répéter</span>
           </button>
           <button
             type="button"
             onClick={api.togglePause}
-            className={`flex min-h-[52px] flex-[1.5] items-center justify-center gap-2 rounded-full px-6 py-3.5 font-label-lg text-label-lg shadow-md transition-all active:scale-95 ${
+            className={`flex min-h-[52px] min-w-0 items-center justify-center gap-2 rounded-full px-3 py-3.5 font-label-lg text-label-lg shadow-md transition-all active:scale-95 ${
               api.running ? 'bg-primary text-on-primary hover:bg-primary-container' : 'bg-secondary text-on-secondary'
             }`}
           >
             <Icon name={api.running ? 'pause' : 'play_arrow'} size={24} filled />
             {api.running ? 'Pause' : 'Reprendre'}
           </button>
-          <button type="button" onClick={() => api.act(nextUnit)} className="flex min-h-[52px] flex-1 items-center justify-center gap-1 rounded-full bg-secondary-container px-4 font-label-lg text-label-lg text-on-secondary-container hover:opacity-90">
+          <button type="button" onClick={() => api.act(nextUnit)} className="flex min-h-[52px] min-w-0 items-center justify-center gap-1 rounded-full bg-secondary-container px-3 font-label-lg text-label-lg text-on-secondary-container hover:opacity-90">
             {p.isLastUnit ? 'Terminer' : 'Suivant'}
             <Icon name="arrow_forward" size={20} />
           </button>

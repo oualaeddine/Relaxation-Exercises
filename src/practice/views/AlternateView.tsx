@@ -8,7 +8,7 @@ import type { PracticeApi } from '../types';
 
 function Nostril({ side, active, action }: { side: 'gauche' | 'droite'; active: boolean; action: 'inhale' | 'exhale' }) {
   return (
-    <div className={`flex flex-col items-center transition-all duration-500 ${active ? 'scale-105 opacity-100' : 'scale-95 opacity-60'}`} data-testid={`nostril-${side}`} data-state={active ? 'ouverte' : 'fermee'}>
+    <div className={`flex flex-col items-center transition-all duration-500 ${active ? 'scale-105' : 'scale-95'}`} data-testid={`nostril-${side}`} data-state={active ? 'ouverte' : 'fermee'}>
       <span
         className={`mb-1 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase shadow-sm ${
           active ? 'bg-secondary text-on-secondary' : 'bg-surface-container-high text-on-surface-variant'
@@ -16,9 +16,9 @@ function Nostril({ side, active, action }: { side: 'gauche' | 'droite'; active: 
       >
         {active ? 'Ouverte' : 'Fermée'}
       </span>
-      <div className={`flex h-14 w-12 flex-col items-center justify-center rounded-2xl shadow-sm ${active ? 'bg-secondary-container text-on-secondary-container' : 'bg-surface-container text-outline'}`}>
+      <div className={`flex h-14 w-12 flex-col items-center justify-center rounded-2xl shadow-sm ${active ? 'bg-secondary-container text-on-secondary-container' : 'bg-surface-container text-on-surface-variant'}`}>
         <Icon name={active ? (action === 'inhale' ? 'arrow_upward' : 'arrow_downward') : 'front_hand'} size={22} />
-        <span className="text-[9px] font-semibold uppercase">{side}</span>
+        <span className="text-[10px] font-semibold uppercase">{side}</span>
       </div>
     </div>
   );

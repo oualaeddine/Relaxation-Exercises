@@ -140,12 +140,15 @@ export function PageLayout({ variant, title, children, backTo, backLabel = 'Reto
               </button>
             ) : null}
             {variant === 'tab' || desktop ? (
-              <Link to="/" className="flex min-w-0 items-center gap-space-sm rounded-xl" aria-label="Calme, accueil">
+              <Link to="/" className="flex min-h-[44px] min-w-0 items-center gap-space-sm rounded-xl">
                 <LogoMark className="h-8 w-8" />
                 <span className="flex min-w-0 flex-col">
                   <span className="font-headline-sm text-headline-sm tracking-tight text-primary">Calme</span>
                   {variant === 'tab' && !desktop ? (
-                    <span className="truncate font-label-sm text-label-sm text-on-surface-variant">{title}</span>
+                    // Visual page subtitle only: the link's accessible name stays "Calme".
+                    <span aria-hidden="true" className="truncate font-label-sm text-label-sm text-on-surface-variant">
+                      {title}
+                    </span>
                   ) : null}
                 </span>
               </Link>

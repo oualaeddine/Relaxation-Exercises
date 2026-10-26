@@ -367,19 +367,19 @@ export function BoxBreathingView({ api }: { api: PracticeApi }) {
           <ProgressBar value={active / session.targetMs} label="Progression de la séance" track="bg-surface-container-high" />
         </div>
         <SensoryToggles api={api} soundLabel="Guide sonore doux" hapticLabel="Retour haptique" compact />
-        <div className="flex items-center justify-between gap-2 px-space-sm pt-space-xs">
-          <button type="button" onClick={api.requestRestart} aria-label="Recommencer la séance" className="flex h-[52px] w-[52px] items-center justify-center rounded-full bg-surface-container-low text-primary shadow-sm active:scale-95">
+        <div className="flex items-center justify-between gap-2 pt-space-xs xs:px-space-sm">
+          <button type="button" onClick={api.requestRestart} aria-label="Recommencer la séance" className="flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-full bg-surface-container-low text-primary shadow-sm active:scale-95">
             <Icon name="restart_alt" size={24} />
           </button>
           <button
             type="button"
             onClick={api.togglePause}
-            className="flex min-h-[56px] items-center justify-center gap-2 whitespace-nowrap rounded-full bg-primary-container px-5 py-4 text-on-primary shadow-md transition-transform active:scale-95 xs:px-8"
+            className="flex min-h-[56px] min-w-0 flex-1 items-center justify-center gap-2 rounded-full bg-primary-container px-4 py-3 text-center text-on-primary shadow-md transition-transform active:scale-95 xs:flex-none xs:whitespace-nowrap xs:px-8"
           >
             <Icon name={api.running ? 'pause' : 'play_arrow'} size={28} filled />
             <span className="font-label-lg text-label-lg font-semibold tracking-wide">{api.running ? 'Mettre en pause' : 'Reprendre'}</span>
           </button>
-          <button type="button" onClick={api.requestFinish} aria-label="Terminer la séance" className="flex h-[52px] w-[52px] items-center justify-center rounded-full bg-surface-container-low text-primary shadow-sm active:scale-95">
+          <button type="button" onClick={api.requestFinish} aria-label="Terminer la séance" className="flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-full bg-surface-container-low text-primary shadow-sm active:scale-95">
             <Icon name="check" size={24} />
           </button>
         </div>

@@ -40,15 +40,15 @@ export function Switch({ checked, onChange, label, description, icon, disabled, 
         aria-describedby={description ? descId : undefined}
         disabled={disabled}
         onClick={() => onChange(!checked)}
-        className={`relative inline-flex h-7 w-12 shrink-0 items-center rounded-full p-0.5 transition-colors disabled:opacity-50 ${
-          checked ? 'bg-secondary' : 'bg-outline'
-        }`}
+        className="flex h-11 w-14 shrink-0 items-center justify-center rounded-full disabled:opacity-50"
       >
-        <span
-          className={`h-6 w-6 rounded-full bg-surface-container-lowest shadow-sm transition-transform ${
-            checked ? 'translate-x-5' : 'translate-x-0'
-          }`}
-        />
+        <span className={`inline-flex h-7 w-12 items-center rounded-full p-0.5 transition-colors ${checked ? 'bg-secondary' : 'bg-outline'}`}>
+          <span
+            className={`h-6 w-6 rounded-full bg-surface-container-lowest shadow-sm transition-transform ${
+              checked ? 'translate-x-5' : 'translate-x-0'
+            }`}
+          />
+        </span>
         <span className="sr-only">{checked ? 'Activé' : 'Désactivé'}</span>
       </button>
     </div>

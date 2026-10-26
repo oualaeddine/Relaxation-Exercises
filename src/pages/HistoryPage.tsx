@@ -140,8 +140,10 @@ export function HistoryPage() {
                 </span>
               </div>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-3" role="group" aria-label="Filtres">
-                <label htmlFor={ids.ex} className="flex flex-col gap-1 font-label-md text-label-md text-on-surface-variant">
-                  Exercice
+                <div className="flex flex-col gap-1">
+                  <label htmlFor={ids.ex} className="font-label-md text-label-md text-on-surface-variant">
+                    Exercice
+                  </label>
                   <select
                     id={ids.ex}
                     value={exerciseId}
@@ -155,13 +157,17 @@ export function HistoryPage() {
                       </option>
                     ))}
                   </select>
-                </label>
-                <label htmlFor={ids.from} className="flex flex-col gap-1 font-label-md text-label-md text-on-surface-variant">
-                  Du
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label htmlFor={ids.from} className="font-label-md text-label-md text-on-surface-variant">
+                    Du
+                  </label>
                   <input id={ids.from} type="date" value={from} onChange={(e) => setFrom(e.target.value)} className="h-12 rounded-2xl border border-mineral bg-surface-container-lowest px-3 font-body-sm text-body-sm focus:border-secondary focus:outline-none focus:ring-2 focus:ring-secondary" />
-                </label>
-                <label htmlFor={ids.to} className="flex flex-col gap-1 font-label-md text-label-md text-on-surface-variant">
-                  Au
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label htmlFor={ids.to} className="font-label-md text-label-md text-on-surface-variant">
+                    Au
+                  </label>
                   <input
                     id={ids.to}
                     type="date"
@@ -170,7 +176,7 @@ export function HistoryPage() {
                     aria-invalid={rangeError !== null}
                     className="h-12 rounded-2xl border border-mineral bg-surface-container-lowest px-3 font-body-sm text-body-sm focus:border-secondary focus:outline-none focus:ring-2 focus:ring-secondary"
                   />
-                </label>
+                </div>
               </div>
               {rangeError ? (
                 <p role="alert" className="font-body-sm text-body-sm text-error">

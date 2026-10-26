@@ -57,27 +57,20 @@
   }
 }
 
-/* Reduced motion: honoured from the OS setting or from Calme's own preference. */
+/* Reduced motion: honoured from the OS setting or from Calme's own preference. Every transition and
+   animation is removed; phases stay readable through text and countdowns. */
 @media (prefers-reduced-motion: reduce) {
-  .motion-safe-anim,
-  .animate-pulse,
-  .animate-ping,
-  .animate-bounce,
-  .animate-spin {
+  *,
+  *::before,
+  *::after {
     animation: none !important;
-  }
-  .breath-transition {
     transition: none !important;
+    scroll-behavior: auto !important;
   }
 }
-.reduce-motion .animate-pulse,
-.reduce-motion .animate-ping,
-.reduce-motion .animate-bounce,
-.reduce-motion .animate-spin {
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
   animation: none !important;
-}
-.reduce-motion .breath-transition,
-.reduce-motion .transition-all,
-.reduce-motion .transition-transform {
   transition: none !important;
 }

@@ -128,7 +128,8 @@ function PracticeScreen({ exercise }: { exercise: Exercise }) {
     const prefs = prefsRef.current;
     if (prefs.sound) chime(prefs.soundTimbre, prefs.volume, 'low');
     if (prefs.haptics) vibrate([60, 80, 60]);
-    window.requestAnimationFrame(() => document.getElementById('summary-title')?.focus());
+    // Effects run after commit, so the summary heading already exists.
+    document.getElementById('summary-title')?.focus();
   }, [ended]);
 
   const startSession = useCallback(
